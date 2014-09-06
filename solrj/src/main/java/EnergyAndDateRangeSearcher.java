@@ -13,18 +13,17 @@ import java.util.TimeZone;
 public class EnergyAndDateRangeSearcher extends SolrJSearcher {
     public static void main(String[] args) throws SolrServerException {
         HttpSolrServer server = new HttpSolrServer("http://localhost:8080/solr");
-        energyAndDateRangeQueries(server);
+        energyAndDateRangeQueries(server,300);
 
     }
-    public static void energyAndDateRangeQueries(HttpSolrServer server) throws SolrServerException {
-        final int QUERIES = 1;
+    public static void energyAndDateRangeQueries(HttpSolrServer server, final int numberOfQueries) throws SolrServerException {
         long totalNumberOfResults = 0, totalExecutionTime = 0;
         double average_time_perResult = 0.0;
 
         System.out.println("--------======\t Starting Date & Energy Range Queries =======--------");
 
         long numberOfResults = 0, executionTime = 0;
-        for (int i = 0; i < QUERIES; i++) {
+        for (int i = 0; i < numberOfQueries; i++) {
             long beginTime, endTime;
             double time_per_result = 0;
 
@@ -54,7 +53,7 @@ public class EnergyAndDateRangeSearcher extends SolrJSearcher {
 
         numberOfResults = 0;
         executionTime = 0;
-        for (int i = 0; i < QUERIES; i++) {
+        for (int i = 0; i < numberOfQueries; i++) {
             long beginTime, endTime;
             double time_per_result = 0;
 
@@ -103,7 +102,7 @@ public class EnergyAndDateRangeSearcher extends SolrJSearcher {
         //a new query execution
         numberOfResults = 0;
         executionTime = 0;
-        for (int i = 0; i < QUERIES; i++) {
+        for (int i = 0; i < numberOfQueries; i++) {
             long beginTime, endTime;
             double time_per_result = 0;
 
@@ -143,7 +142,7 @@ public class EnergyAndDateRangeSearcher extends SolrJSearcher {
 
         numberOfResults = 0;
         executionTime = 0;
-        for (int i = 0; i < QUERIES; i++) {
+        for (int i = 0; i < numberOfQueries; i++) {
             long beginTime, endTime;
             double time_per_result = 0;
 
@@ -173,7 +172,7 @@ public class EnergyAndDateRangeSearcher extends SolrJSearcher {
 
         numberOfResults = 0;
         executionTime = 0;
-        for (int i = 0; i < QUERIES; i++) {
+        for (int i = 0; i < numberOfQueries; i++) {
             long beginTime, endTime;
             double time_per_result = 0;
 

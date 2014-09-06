@@ -11,16 +11,19 @@ import java.util.Date;
 import java.util.TimeZone;
 
 public class DateRangeSearcher extends SolrJSearcher{
+    public static void main(String[] args) throws SolrServerException {
+        HttpSolrServer server = new HttpSolrServer("http://localhost:8080/solr");
+        testDateRangeQueries(server,1000);
+    }
 
-    public static void testDateRangeQueries(HttpSolrServer server) throws SolrServerException {
-        final int QUERIES = 1;
+    public static void testDateRangeQueries(HttpSolrServer server,final int numberOfQueries) throws SolrServerException {
         long totalNumberOfResults = 0, totalExecutionTime = 0;
         double average_time_perResult = 0.0;
 
         System.out.println("--------======\t Starting Date Range Queries =======--------");
 
         long numberOfResults=0, executionTime=0;
-        for (int i = 0; i < QUERIES; i++) {
+        for (int i = 0; i < numberOfQueries; i++) {
             long beginTime, endTime;
             double time_per_result = 0;
 
@@ -46,7 +49,7 @@ public class DateRangeSearcher extends SolrJSearcher{
 
         numberOfResults = 0;
         executionTime = 0;
-        for (int i = 0; i < QUERIES; i++) {
+        for (int i = 0; i < numberOfQueries; i++) {
             long beginTime, endTime;
             double time_per_result = 0;
 
@@ -83,7 +86,7 @@ public class DateRangeSearcher extends SolrJSearcher{
         //a new query execution
         numberOfResults=0;
         executionTime=0;
-        for (int i = 0; i < QUERIES; i++) {
+        for (int i = 0; i < numberOfQueries; i++) {
             long beginTime, endTime;
             double time_per_result = 0;
 

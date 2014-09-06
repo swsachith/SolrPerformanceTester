@@ -9,17 +9,16 @@ import java.util.Calendar;
 public class EnergyRangeSearcher extends SolrJSearcher {
     public static void main(String[] args) throws SolrServerException {
         HttpSolrServer server = new HttpSolrServer("http://localhost:8080/solr");
-        energyRangeSearch(server);
+        energyRangeSearch(server,100);
     }
-    public static void energyRangeSearch(HttpSolrServer server) throws SolrServerException {
-        final int QUERIES = 1;
+    public static void energyRangeSearch(HttpSolrServer server, final int numberOfQueries) throws SolrServerException {
         long totalNumberOfResults = 0, totalExecutionTime = 0;
         double average_time_perResult = 0.0;
 
         System.out.println("--------======\t Starting Energy Range Queries =======--------");
 
         long numberOfResults = 0, executionTime = 0;
-        for (int i = 0; i < QUERIES; i++) {
+        for (int i = 0; i < numberOfQueries; i++) {
             long beginTime, endTime;
             double time_per_result = 0;
 
@@ -43,7 +42,7 @@ public class EnergyRangeSearcher extends SolrJSearcher {
 
         numberOfResults = 0;
         executionTime = 0;
-        for (int i = 0; i < QUERIES; i++) {
+        for (int i = 0; i < numberOfQueries; i++) {
             long beginTime, endTime;
             double time_per_result = 0;
 
@@ -76,7 +75,7 @@ public class EnergyRangeSearcher extends SolrJSearcher {
 
         numberOfResults = 0;
         executionTime = 0;
-        for (int i = 0; i < QUERIES; i++) {
+        for (int i = 0; i < numberOfQueries; i++) {
             long beginTime, endTime;
             double time_per_result = 0;
 

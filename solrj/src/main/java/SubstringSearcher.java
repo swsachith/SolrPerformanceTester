@@ -10,24 +10,22 @@ import java.util.UUID;
 public class SubstringSearcher extends SolrJSearcher {
     public static void main(String[] args) throws SolrServerException {
         HttpSolrServer server = new HttpSolrServer("http://localhost:8080/solr");
-        searchSubstrings(server);
+        searchSubstrings(server,100);
     }
-    public static void searchSubstrings(HttpSolrServer server) throws SolrServerException {
-        final int QUERIES = 1;
+    public static void searchSubstrings(HttpSolrServer server, final int numberOfQueries) throws SolrServerException {
         long totalNumberOfResults = 0, totalExecutionTime = 0;
         double average_time_perResult = 0.0;
 
         System.out.println("--------======\t Starting Substring Queries =======--------");
 
         long numberOfResults = 0, executionTime = 0;
-        for (int i = 0; i < QUERIES; i++) {
+        for (int i = 0; i < numberOfQueries; i++) {
             long beginTime, endTime;
             double time_per_result = 0;
 
             UUID uuid = UUID.randomUUID();
             String inchi_key = uuid.toString();
             String inchi = inchi_key.substring(11);
-            System.out.println(inchi.toString().length());
 
             int first_index = RandomUtils.nextInt(24);
             int second_index = RandomUtils.nextInt(24);
