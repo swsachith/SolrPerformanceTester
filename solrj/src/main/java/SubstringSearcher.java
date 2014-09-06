@@ -49,7 +49,7 @@ public class SubstringSearcher extends SolrJSearcher {
             numberOfResults += response.getResults().getNumFound();
             executionTime += endTime - beginTime;
         }
-        printResults("createdDate date TO *", numberOfResults, executionTime);
+        printResults("Substring searching ....", numberOfResults, executionTime);
         totalNumberOfResults += numberOfResults;
         totalExecutionTime += executionTime;
 
