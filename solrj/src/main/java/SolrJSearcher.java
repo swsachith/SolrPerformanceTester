@@ -1,24 +1,16 @@
-import org.apache.commons.lang.math.RandomUtils;
+import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.client.solrj.impl.HttpSolrServer;
-import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.response.QueryResponse;
-import org.apache.solr.common.SolrDocumentList;
-import org.apache.solr.schema.DateValueFieldType;
 
-import java.net.MalformedURLException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Calendar;
 
 public class SolrJSearcher {
 
     public static SolrQuery constructQuery(String query_text, String filterQuery) {
         SolrQuery query = new SolrQuery();
         query.setQuery(query_text);
-        //query.addFilterQuery("createdDate:[83861004-03-06T00:00:00.999Z TO *]");
         query.addFilterQuery(filterQuery);
-        //query.setFields("id","price","merchant");
         query.setStart(0);
         query.set("defType", "edismax");
         return query;

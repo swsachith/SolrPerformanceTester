@@ -11,6 +11,11 @@ import java.util.Date;
 import java.util.TimeZone;
 
 public class EnergyAndDateRangeSearcher extends SolrJSearcher {
+    public static void main(String[] args) throws SolrServerException {
+        HttpSolrServer server = new HttpSolrServer("http://localhost:8080/solr");
+        energyAndDateRangeQueries(server);
+
+    }
     public static void energyAndDateRangeQueries(HttpSolrServer server) throws SolrServerException {
         final int QUERIES = 1;
         long totalNumberOfResults = 0, totalExecutionTime = 0;
@@ -43,7 +48,7 @@ public class EnergyAndDateRangeSearcher extends SolrJSearcher {
             numberOfResults += response.getResults().getNumFound();
             executionTime += endTime - beginTime;
         }
-        printResults("createdDate date TO *", numberOfResults, executionTime);
+        printResults("createdDate date TO * and FinalEnergy 0 To *", numberOfResults, executionTime);
         totalNumberOfResults += numberOfResults;
         totalExecutionTime += executionTime;
 
@@ -90,7 +95,7 @@ public class EnergyAndDateRangeSearcher extends SolrJSearcher {
             numberOfResults += response.getResults().getNumFound();
             executionTime += endTime - beginTime;
         }
-        printResults("CreatedDate: date To date", numberOfResults, executionTime);
+        printResults("CreatedDate: date To date AND finalEnergy: int TO int", numberOfResults, executionTime);
         totalNumberOfResults += numberOfResults;
         totalExecutionTime += executionTime;
 
@@ -131,7 +136,7 @@ public class EnergyAndDateRangeSearcher extends SolrJSearcher {
             numberOfResults += response.getResults().getNumFound();
             executionTime += endTime - beginTime;
         }
-        printResults("createdDate NOW TO date", numberOfResults, executionTime);
+        printResults("createdDate NOW TO date AND finalEnergy: int TO int", numberOfResults, executionTime);
         totalNumberOfResults += numberOfResults;
         totalExecutionTime += executionTime;
 
@@ -162,7 +167,7 @@ public class EnergyAndDateRangeSearcher extends SolrJSearcher {
             numberOfResults += response.getResults().getNumFound();
             executionTime += endTime - beginTime;
         }
-        printResults("createdDate date TO *", numberOfResults, executionTime);
+        printResults("finalEnergy: int TO * AND createdDate date TO *", numberOfResults, executionTime);
         totalNumberOfResults += numberOfResults;
         totalExecutionTime += executionTime;
 
@@ -198,8 +203,8 @@ public class EnergyAndDateRangeSearcher extends SolrJSearcher {
                 finalEnergy_2 = temp_1;
             }
             //constructing the query
-            SolrQuery query = constructQuery("test", "createdDate:[" + df.format(date_1) + " TO  *] " +
-                    "AND finalEnergy:[" + finalEnergy_1 + " TO " + finalEnergy_2 + "]");
+            SolrQuery query = constructQuery("test", "finalEnergy:[" + finalEnergy_1 + " TO " + finalEnergy_2 + "] "+
+                    "AND createdDate:[ "+ df.format(date_1) + " TO  *]");
 
             //executing the query
             beginTime = Calendar.getInstance().getTimeInMillis();
@@ -209,7 +214,7 @@ public class EnergyAndDateRangeSearcher extends SolrJSearcher {
             numberOfResults += response.getResults().getNumFound();
             executionTime += endTime - beginTime;
         }
-        printResults("CreatedDate: date To date", numberOfResults, executionTime);
+        printResults("finalEnergy int TO int AND CreatedDate: date To *", numberOfResults, executionTime);
         totalNumberOfResults += numberOfResults;
         totalExecutionTime += executionTime;
 
