@@ -36,7 +36,7 @@ public class EnergyRangeSearcher extends SolrJSearcher {
             numberOfResults += response.getResults().getNumFound();
             executionTime += endTime - beginTime;
         }
-        printResults("createdDate date TO *", numberOfResults, executionTime);
+        printResults("finalEnergy energy TO *", numberOfResults, executionTime);
         totalNumberOfResults += numberOfResults;
         totalExecutionTime += executionTime;
 
@@ -69,7 +69,7 @@ public class EnergyRangeSearcher extends SolrJSearcher {
             numberOfResults += response.getResults().getNumFound();
             executionTime += endTime - beginTime;
         }
-        printResults("createdDate date TO *", numberOfResults, executionTime);
+        printResults("finalEnergy energy TO energy", numberOfResults, executionTime);
         totalNumberOfResults += numberOfResults;
         totalExecutionTime += executionTime;
 
@@ -93,7 +93,7 @@ public class EnergyRangeSearcher extends SolrJSearcher {
             numberOfResults += response.getResults().getNumFound();
             executionTime += endTime - beginTime;
         }
-        printResults("createdDate date TO *", numberOfResults, executionTime);
+        printResults("finalEnergy 0 TO energy", numberOfResults, executionTime);
         totalNumberOfResults += numberOfResults;
         totalExecutionTime += executionTime;
 
